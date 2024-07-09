@@ -52,7 +52,7 @@ class HomePage extends StatelessWidget {
                     'At our Conflict Resolution Hub, we believe that every conflict holds an opportunity for growth and understanding. Our mission is to provide you with the tools and resources you need to navigate and resolve conflicts effectively. Whether you’re dealing with interpersonal issues, workplace disagreements, or community disputes, our platform offers comprehensive guides, expert advice, and practical strategies to help you achieve peaceful resolutions.',
                 buttonText: 'Conflict Resolution',
                 onPressed: () {},
-                imagePath: 'assets/images/community-image.png',
+                imagePath: 'assets/images/conflict-resolution.png',
               ),
               const SizedBox(height: 40),
               Section(
@@ -62,7 +62,7 @@ class HomePage extends StatelessWidget {
                       'We are dedicated to promoting social responsibility and community engagement. Our platform connects volunteers, organizations, and community members who share a passion for making a positive impact. Together, we can create meaningful change and build a stronger, more compassionate community.',
                   buttonText: 'Community Service',
                   onPressed: () {},
-                  imagePath: 'assets/images/community-image.png',
+                  imagePath: 'assets/images/community-service.png',
                   isImageFirst: true),
             ],
           ),
