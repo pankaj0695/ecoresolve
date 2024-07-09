@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/pages/home.dart';
+import 'package:flutter_app/pages/conflict-resolution.dart';
+import 'package:flutter_app/pages/community-service.dart';
+import 'package:flutter_app/pages/feedback.dart';
 
 void main() {
   runApp(const MyApp());
@@ -15,7 +18,13 @@ class MyApp extends StatelessWidget {
       title: 'Flutter Demo',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Inika'),
-      home: const HomePage(),
+      initialRoute: '/',
+      routes: {
+        '/': (context) => const HomePage(),
+        '/conflict-resolution': (context) => ConflictResolutionPage(),
+        '/community-service': (context) => CommunityServicePage(),
+        '/feedback': (context) => FeedbackPage(),
+      },
     );
   }
 }
