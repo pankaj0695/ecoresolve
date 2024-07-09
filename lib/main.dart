@@ -15,15 +15,15 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'EcoResolve',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'Inika'),
       initialRoute: '/',
       routes: {
         '/': (context) => const HomePage(),
-        '/conflict-resolution': (context) => ConflictResolutionPage(),
-        '/community-service': (context) => CommunityServicePage(),
-        '/feedback': (context) => FeedbackPage(),
+        '/conflict-resolution': (context) => const ConflictResolutionPage(),
+        '/community-service': (context) => const CommunityServicePage(),
+        '/feedback': (context) => const FeedbackPage(),
       },
     );
   }
