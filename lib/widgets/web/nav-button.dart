@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/home.dart';
-import 'package:flutter_app/pages/conflict-resolution.dart';
-import 'package:flutter_app/pages/community-service.dart';
-import 'package:flutter_app/pages/feedback.dart';
+import 'package:go_router/go_router.dart';
 
 class NavButton extends StatefulWidget {
   final String text;
@@ -19,6 +16,10 @@ class _NavButtonState extends State<NavButton> {
 
   @override
   Widget build(BuildContext context) {
+    final isActive =
+        GoRouter.of(context).routeInformationProvider.value.uri.toString() ==
+            widget.routeName;
+
     return MouseRegion(
         onEnter: (_) => _onHover(true),
         onExit: (_) => _onHover(false),
@@ -26,21 +27,12 @@ class _NavButtonState extends State<NavButton> {
           margin: const EdgeInsets.fromLTRB(15, 20, 15, 0),
           child: TextButton(
             onPressed: () {
-              Navigator.pushAndRemoveUntil(
-                context,
-                PageRouteBuilder(
-                  pageBuilder: (context, animation1, animation2) {
-                    return _getPageByRouteName(widget.routeName);
-                  },
-                  transitionDuration: const Duration(seconds: 0),
-                ),
-                (route) => false,
-              );
+              context.go(widget.routeName);
             },
             child: Text(
               widget.text,
               style: TextStyle(
-                  color: _isHovering
+                  color: _isHovering || isActive
                       ? const Color(0xffA6FAFF)
                       : const Color(0xffC3C3C3),
                   fontSize: 17),
@@ -53,20 +45,5 @@ class _NavButtonState extends State<NavButton> {
     setState(() {
       _isHovering = isHovering;
     });
-  }
-
-  Widget _getPageByRouteName(String routeName) {
-    switch (routeName) {
-      case '/':
-        return const HomePage();
-      case '/conflict-resolution':
-        return const ConflictResolutionPage();
-      case '/community-service':
-        return const CommunityServicePage();
-      case '/feedback':
-        return const FeedbackPage();
-      default:
-        return const HomePage();
-    }
   }
 }

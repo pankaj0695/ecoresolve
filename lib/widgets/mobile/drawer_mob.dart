@@ -1,10 +1,6 @@
-import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/nav_items.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_app/pages/home.dart';
-import 'package:flutter_app/pages/conflict-resolution.dart';
-import 'package:flutter_app/pages/community-service.dart';
-import 'package:flutter_app/pages/feedback.dart';
+import 'package:flutter_app/widgets/mobile/menu-button.dart';
 
 class DrawerMob extends StatelessWidget {
   const DrawerMob({super.key});
@@ -28,45 +24,10 @@ class DrawerMob extends StatelessWidget {
             ),
           ),
           for (int i = 0; i < navIcons.length; i++)
-            ListTile(
-              onTap: () {
-                Navigator.pushAndRemoveUntil(
-                  context,
-                  PageRouteBuilder(
-                    pageBuilder: (context, animation1, animation2) {
-                      return _getPageByRouteName(navPaths[i]);
-                    },
-                    transitionDuration: const Duration(seconds: 0),
-                  ),
-                  (route) => false,
-                );
-              },
-              iconColor: const Color(0xffA6FAFF),
-              contentPadding: const EdgeInsets.symmetric(horizontal: 20),
-              leading: Icon(navIcons[i]),
-              title: Text(navTitles[i]),
-              titleTextStyle: const TextStyle(
-                color: CustomColor.lightGrey,
-                fontSize: 15,
-              ),
-            ),
+            MenuButton(
+                title: navTitles[i], path: navPaths[i], icon: navIcons[i])
         ],
       ),
     );
-  }
-
-  Widget _getPageByRouteName(String routeName) {
-    switch (routeName) {
-      case '/':
-        return const HomePage();
-      case '/conflict-resolution':
-        return const ConflictResolutionPage();
-      case '/community-service':
-        return const CommunityServicePage();
-      case '/feedback':
-        return const FeedbackPage();
-      default:
-        return const HomePage();
-    }
   }
 }
