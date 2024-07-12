@@ -60,11 +60,11 @@ class _NavButtonState extends State<NavButton> {
       case '/':
         return const HomePage();
       case '/conflict-resolution':
-        return ConflictResolutionPage();
+        return const ConflictResolutionPage();
       case '/community-service':
-        return CommunityServicePage();
+        return const CommunityServicePage();
       case '/feedback':
-        return FeedbackPage();
+        return const FeedbackPage();
       default:
         return const HomePage();
     }

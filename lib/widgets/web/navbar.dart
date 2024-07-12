@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_app/components/nav-button.dart';
+import 'package:flutter_app/widgets/web/nav-button.dart';
+import 'package:flutter_app/constants/nav_items.dart';
 
 class Navbar extends StatelessWidget implements PreferredSizeWidget {
   const Navbar({super.key});
@@ -28,13 +29,9 @@ class Navbar extends StatelessWidget implements PreferredSizeWidget {
             )
           ])),
       actions: [
-        NavButton(text: 'Home', routeName: '/'),
-        NavButton(
-            text: 'Conflict Resolution', routeName: '/conflict-resolution'),
-        NavButton(text: 'Community Service', routeName: '/community-service'),
-        Container(
-            margin: const EdgeInsets.fromLTRB(0, 0, 20, 0),
-            child: NavButton(text: 'Feedback', routeName: '/feedback')),
+        for (int i = 0; i < navTitles.length; i++)
+          (NavButton(text: navTitles[i], routeName: navPaths[i])),
+        const SizedBox(width: 20),
       ],
     );
   }

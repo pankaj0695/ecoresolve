@@ -1,16 +1,16 @@
 // import 'dart:developer';
 import "package:flutter/material.dart";
-import "package:flutter_app/components/feedback-question.dart";
-import "package:flutter_app/components/feedback-text-input.dart";
+import "package:flutter_app/widgets/mobile/feedback_question_mob.dart";
+import "package:flutter_app/widgets/mobile/feedback_text_input_mob.dart";
 
-class FeedbackForm extends StatefulWidget {
-  const FeedbackForm({super.key});
+class FeedbackFormMob extends StatefulWidget {
+  const FeedbackFormMob({super.key});
 
   @override
-  _FeedBackFormState createState() => _FeedBackFormState();
+  _FeedBackFormMobState createState() => _FeedBackFormMobState();
 }
 
-class _FeedBackFormState extends State<FeedbackForm> {
+class _FeedBackFormMobState extends State<FeedbackFormMob> {
   String _answer1 = "";
   String _answer2 = "";
   String _answer3 = "";
@@ -60,7 +60,7 @@ class _FeedBackFormState extends State<FeedbackForm> {
   @override
   Widget build(BuildContext context) {
     return Container(
-        padding: const EdgeInsets.all(30),
+        padding: const EdgeInsets.all(20),
         decoration: BoxDecoration(
           color: const Color.fromRGBO(0, 23, 42, 0.7),
           border: Border.all(color: const Color(0xffA6FAFF), width: 1),
@@ -69,45 +69,45 @@ class _FeedBackFormState extends State<FeedbackForm> {
         width: 800,
         child: Column(
           children: [
-            FeedbackQuestion(
+            FeedbackQuestionMob(
               question:
                   'How would you rate your overall experience with our website?',
               options: const ['Excellent', 'Good', 'Poor'],
               setOption: _setAnswer1,
               option: _answer1,
             ),
-            FeedbackQuestion(
+            FeedbackQuestionMob(
               question:
                   'How effective do you find our conflict resolution tools and advice?',
               options: const ['Effective', 'Neutral', 'Ineffective'],
               setOption: _setAnswer2,
               option: _answer2,
             ),
-            FeedbackQuestion(
+            FeedbackQuestionMob(
               question:
                   'How would you rate the quality of the information provided on our website?',
               options: const ['Excellent', 'Good', 'Poor'],
               setOption: _setAnswer3,
               option: _answer3,
             ),
-            FeedbackQuestion(
+            FeedbackQuestionMob(
               question:
                   'How effective do you find our community service and social responsibility initiatives?',
               options: const ['Effective', 'Neutral', 'Ineffective'],
               setOption: _setAnswer4,
               option: _answer4,
             ),
-            FeedbackTextInput(
+            FeedbackTextInputMob(
               question:
                   'What suggestions do you have for improving our website and services?',
               inputController: _inputController1,
             ),
-            FeedbackTextInput(
+            FeedbackTextInputMob(
               question:
                   'Do you have any additional comments or feedback you would like to share?',
               inputController: _inputController2,
             ),
-            const SizedBox(height: 20),
+            const SizedBox(height: 15),
             ElevatedButton(
               onPressed: submitForm,
               style: ElevatedButton.styleFrom(
@@ -118,10 +118,10 @@ class _FeedBackFormState extends State<FeedbackForm> {
                 backgroundColor: const Color.fromRGBO(46, 196, 216, 0.2),
               ),
               child: const Padding(
-                  padding: EdgeInsets.fromLTRB(18, 8, 18, 8),
+                  padding: EdgeInsets.fromLTRB(16, 8, 16, 8),
                   child: Text(
                     'Submit',
-                    style: TextStyle(fontSize: 20, color: Color(0xffA6FAFF)),
+                    style: TextStyle(fontSize: 16, color: Color(0xffA6FAFF)),
                   )),
             ),
           ],
