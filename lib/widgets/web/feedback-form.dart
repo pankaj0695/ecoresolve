@@ -2,6 +2,8 @@
 import "package:flutter/material.dart";
 import "package:flutter_app/widgets/web/feedback-question.dart";
 import "package:flutter_app/widgets/web/feedback-text-input.dart";
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class FeedbackForm extends StatefulWidget {
   const FeedbackForm({super.key});
@@ -18,13 +20,39 @@ class _FeedBackFormState extends State<FeedbackForm> {
   final _inputController1 = TextEditingController();
   final _inputController2 = TextEditingController();
 
-  void submitForm() {
-    print(_answer1);
-    print(_answer2);
-    print(_answer3);
-    print(_answer4);
-    print(_inputController1.text);
-    print(_inputController2.text);
+  Future<void> submitForm() async {
+    final feedbackData = {
+      'experience': _answer1,
+      'conflict_resolution_effectiveness': _answer2,
+      'information_quality': _answer3,
+      'community_service_effectiveness': _answer4,
+      'suggestions': _inputController1.text,
+      'comments': _inputController2.text,
+    };
+
+    try {
+      final response = await http.post(
+        Uri.parse('http://127.0.0.1:8000/api/feedback/'),
+        headers: {'Content-Type': 'application/json'},
+        body: jsonEncode(feedbackData),
+      );
+
+      if (response.statusCode == 201) {
+        // Successfully submitted
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Feedback submitted successfully')),
+        );
+      } else {
+        // Error occurred
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('Failed to submit feedback')),
+        );
+      }
+    } catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text('Error occurred: $e')),
+      );
+    }
     _setAnswer1("");
     _setAnswer2("");
     _setAnswer3("");
