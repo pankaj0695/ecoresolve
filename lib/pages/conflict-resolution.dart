@@ -33,10 +33,9 @@ class _ConflictResolutionPageState extends State<ConflictResolutionPage> {
                     },
                   ),
             endDrawer: isDesktop ? null : const DrawerMob(),
-            body: SingleChildScrollView(
-                child: isDesktop
-                    ? const ConfChatScreenWeb()
-                    : const ConfChatScreenMob()));
+            body: isDesktop
+                ? const ConfChatScreenWeb()
+                : const ConfChatScreenMob());
       },
     );
   }

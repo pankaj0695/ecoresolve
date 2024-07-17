@@ -33,10 +33,9 @@ class _CommunityServicePageState extends State<CommunityServicePage> {
                     },
                   ),
             endDrawer: isDesktop ? null : const DrawerMob(),
-            body: SingleChildScrollView(
-                child: isDesktop
-                    ? const ComChatScreenWeb()
-                    : const ComChatScreenMob()));
+            body: isDesktop
+                ? const ComChatScreenWeb()
+                : const ComChatScreenMob());
       },
     );
   }

@@ -26,7 +26,8 @@ class ChatController extends GetxController {
 
       try {
         var response = await http.post(
-          Uri.parse(foundation.kIsWeb
+          Uri.parse(foundation.kIsWeb ||
+                  foundation.defaultTargetPlatform == TargetPlatform.iOS
               ? 'http://127.0.0.1:8000/api/chat/' // Use localhost for web
               : 'http://10.0.2.2:8000/api/chat/'), // Use Android emulator address for mobile
           headers: {'Content-Type': 'application/json'},

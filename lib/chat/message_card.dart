@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter_app/chat/message.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/constants/size.dart';
@@ -34,7 +35,7 @@ class MessageCard extends StatelessWidget {
                       backgroundColor: CustomColor.bgLight1,
                       radius: isDesktop ? 20 : 10,
                       child: Image.asset('assets/images/roboticon.png',
-                          width: isDesktop ? 25 : 10),
+                          width: isDesktop ? 25 : 13),
                     ),
                   ),
                   Container(
@@ -108,8 +109,12 @@ class MessageCard extends StatelessWidget {
                   child: CircleAvatar(
                       radius: isDesktop ? 20 : 10,
                       backgroundColor: CustomColor.bgLight1,
-                      child: const Icon(Icons.person,
-                          color: CustomColor.greenSecondary)),
+                      child: Icon(Icons.person,
+                          color: CustomColor.greenSecondary,
+                          size: foundation.defaultTargetPlatform ==
+                                  TargetPlatform.iOS
+                              ? 15
+                              : 25)),
                 ),
                 const SizedBox(width: 15),
               ]);
