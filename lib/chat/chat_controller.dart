@@ -1,7 +1,9 @@
-import 'package:flutter_app/apis/apis.dart';
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter_app/chat/message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ChatController extends GetxController {
   final textC = TextEditingController();
@@ -13,20 +15,39 @@ class ChatController extends GetxController {
   ].obs;
 
   Future<void> askQuestion() async {
-    if (textC.text.trim().isNotEmpty) {
+    final question = textC.text;
+    if (question.trim().isNotEmpty) {
       //user
-      list.add(Message(msg: textC.text, msgType: MessageType.user));
+      list.add(Message(msg: question, msgType: MessageType.user));
+      textC.text = '';
+
       list.add(Message(msg: 'Please Wait!', msgType: MessageType.bot));
       _scrollDown();
 
-      final res = await APIs.getAnswer(textC.text);
+      try {
+        var response = await http.post(
+          Uri.parse(foundation.kIsWeb
+              ? 'http://127.0.0.1:8000/api/chat/' // Use localhost for web
+              : 'http://10.0.2.2:8000/api/chat/'), // Use Android emulator address for mobile
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'question': question}),
+        );
 
-      //bot
-      list.removeLast();
-      list.add(Message(msg: res, msgType: MessageType.bot));
-      _scrollDown();
-
-      textC.text = '';
+        if (response.statusCode == 200) {
+          var data = jsonDecode(response.body);
+          var answer = data['response'];
+          list.removeLast();
+          list.add(Message(msg: answer, msgType: MessageType.bot));
+          _scrollDown();
+        } else {
+          list.removeLast();
+          list.add(
+              Message(msg: 'Something went wrong', msgType: MessageType.bot));
+          _scrollDown();
+        }
+      } catch (e) {
+        print('Error occurred: $e');
+      }
     }
   }
 

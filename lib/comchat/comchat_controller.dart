@@ -1,7 +1,9 @@
-import 'package:flutter_app/comapis/com_apis.dart';
+import 'package:flutter/foundation.dart' as foundation;
 import 'package:flutter_app/comchat/com_message.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class ComchatController extends GetxController {
   final textC = TextEditingController();
@@ -15,22 +17,40 @@ class ComchatController extends GetxController {
   ].obs;
 
   Future<void> askQuestion() async {
-    if (textC.text.trim().isNotEmpty) {
+    final question = textC.text;
+    if (question.trim().isNotEmpty) {
       //user
-      list.add(
-          ComMessage(commsg: textC.text, comMsgType: ComMessageType.user2));
-      list.add(ComMessage(
-          commsg: 'something went wrong', comMsgType: ComMessageType.bot2));
-      _scrollDown();
-
-      final res = await APIs2.getAnswer(textC.text);
-
-      //bot
-      list.removeLast();
-      list.add(ComMessage(commsg: res, comMsgType: ComMessageType.bot2));
-      _scrollDown();
-
+      list.add(ComMessage(commsg: question, comMsgType: ComMessageType.user2));
       textC.text = '';
+
+      list.add(
+          ComMessage(commsg: 'Please Wait!', comMsgType: ComMessageType.bot2));
+      _scrollDown();
+
+      try {
+        var response = await http.post(
+          Uri.parse(foundation.kIsWeb
+              ? 'http://127.0.0.1:8000/api/chat/' // Use localhost for web
+              : 'http://10.0.2.2:8000/api/chat/'), // Use Android emulator address for mobile
+          headers: {'Content-Type': 'application/json'},
+          body: jsonEncode({'question': question}),
+        );
+
+        if (response.statusCode == 200) {
+          var data = jsonDecode(response.body);
+          var answer = data['response'];
+          list.removeLast();
+          list.add(ComMessage(commsg: answer, comMsgType: ComMessageType.bot2));
+          _scrollDown();
+        } else {
+          list.removeLast();
+          list.add(ComMessage(
+              commsg: 'Something went wrong', comMsgType: ComMessageType.bot2));
+          _scrollDown();
+        }
+      } catch (e) {
+        print('Error occurred: $e');
+      }
     }
   }
 
