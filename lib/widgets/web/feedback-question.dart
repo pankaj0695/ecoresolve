@@ -6,8 +6,8 @@ class FeedbackQuestion extends StatefulWidget {
   final String option;
   final setOption;
 
-  FeedbackQuestion(
-      {required this.question,
+  const FeedbackQuestion(
+      {super.key, required this.question,
       required this.options,
       required this.option,
       required this.setOption});

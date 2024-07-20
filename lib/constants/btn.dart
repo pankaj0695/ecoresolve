@@ -8,11 +8,11 @@ class CustomButton extends StatelessWidget {
   final BoxConstraints constraints;
 
   const CustomButton({
-    Key? key,
+    super.key,
     required this.text,
     required this.onPressed,
     required this.constraints,
-  }) : super(key: key);
+  });
 
   @override
   Widget build(BuildContext context) {

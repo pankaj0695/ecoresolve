@@ -5,7 +5,7 @@ class NavButton extends StatefulWidget {
   final String text;
   final String routeName;
 
-  NavButton({required this.text, required this.routeName});
+  const NavButton({super.key, required this.text, required this.routeName});
 
   @override
   _NavButtonState createState() => _NavButtonState();

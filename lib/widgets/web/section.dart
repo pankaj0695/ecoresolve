@@ -8,8 +8,8 @@ class Section extends StatelessWidget {
   final String imagePath;
   final bool isImageFirst;
 
-  Section(
-      {required this.title,
+  const Section(
+      {super.key, required this.title,
       required this.description,
       required this.buttonText,
       required this.onPressed,

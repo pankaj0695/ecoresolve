@@ -4,7 +4,7 @@ class FeedbackTextInputMob extends StatefulWidget {
   final String question;
   final TextEditingController inputController;
 
-  FeedbackTextInputMob({required this.question, required this.inputController});
+  const FeedbackTextInputMob({super.key, required this.question, required this.inputController});
 
   @override
   State<FeedbackTextInputMob> createState() => _FeedbackTextInputMobState();

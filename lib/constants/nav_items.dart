@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 List<String> navTitles = [
+  "Signup",
   "Home",
   "Conflict Resolution",
   "Community Service",
@@ -9,6 +10,7 @@ List<String> navTitles = [
 
 List<String> navPaths = [
   "/",
+  "/home",
   "/conflict-resolution",
   "/community-service",
   "/feedback",

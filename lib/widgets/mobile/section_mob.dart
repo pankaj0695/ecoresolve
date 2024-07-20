@@ -7,7 +7,7 @@ class SectionMob extends StatelessWidget {
   final VoidCallback onPressed;
   final String imagePath;
 
-  const SectionMob({
+  const SectionMob({super.key, 
     required this.title,
     required this.description,
     required this.buttonText,

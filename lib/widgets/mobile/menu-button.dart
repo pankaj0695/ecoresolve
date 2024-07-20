@@ -7,7 +7,7 @@ class MenuButton extends StatefulWidget {
   final String path;
   final IconData icon;
 
-  MenuButton({required this.title, required this.path, required this.icon});
+  const MenuButton({super.key, required this.title, required this.path, required this.icon});
 
   @override
   _MenuButtonState createState() => _MenuButtonState();

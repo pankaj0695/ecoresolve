@@ -4,7 +4,7 @@ class FeedbackTextInput extends StatefulWidget {
   final String question;
   final TextEditingController inputController;
 
-  FeedbackTextInput({required this.question, required this.inputController});
+  const FeedbackTextInput({super.key, required this.question, required this.inputController});
 
   @override
   State<FeedbackTextInput> createState() => _FeedbackTextInputState();

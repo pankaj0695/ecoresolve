@@ -6,8 +6,8 @@ class FeedbackQuestionMob extends StatefulWidget {
   final String option;
   final setOption;
 
-  FeedbackQuestionMob(
-      {required this.question,
+  const FeedbackQuestionMob(
+      {super.key, required this.question,
       required this.options,
       required this.option,
       required this.setOption});
