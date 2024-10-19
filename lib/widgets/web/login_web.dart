@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
-import 'package:flutter_app/pages/home.dart';
-import 'package:flutter_app/pages/signup_page.dart';
 import 'package:go_router/go_router.dart';
 
 class LoginWeb extends StatefulWidget {
