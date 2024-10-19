@@ -3,7 +3,8 @@ import 'package:flutter_app/pages/community-service.dart';
 import 'package:flutter_app/pages/conflict-resolution.dart';
 import 'package:flutter_app/pages/feedback.dart';
 import 'package:flutter_app/pages/home.dart';
-import 'package:flutter_app/pages/signup_page.dart'; 
+import 'package:flutter_app/pages/login_page.dart';
+import 'package:flutter_app/pages/signup_page.dart';
 import 'package:go_router/go_router.dart';
 
 void main() {
@@ -12,27 +13,29 @@ void main() {
 
 class MyApp extends StatelessWidget {
   final GoRouter _router = GoRouter(
-    initialLocation: '/',
+    initialLocation: '/login',
     routes: [
       GoRoute(
-        path: '/',
+        path: '/login',
         pageBuilder: (context, state) =>
-            const NoTransitionPage(child: SignupPage()), 
-            // const NoTransitionPage(child: SignupPage()),
+            const NoTransitionPage(child: LoginPage()),
+      ),
+      GoRoute(
+        path: '/signup',
+        pageBuilder: (context, state) =>
+            const NoTransitionPage(child: SignupPage()),
       ),
       GoRoute(
         path: '/home',
         pageBuilder: (context, state) =>
             const NoTransitionPage(child: HomePage()),
-            // const NoTransitionPage(child: SignupPage()),
       ),
       GoRoute(
         path: '/conflict-resolution',
         pageBuilder: (context, state) =>
             const NoTransitionPage(child: ConflictResolutionPage()),
-            // const NoTransitionPage(child: LoginPage()),
       ),
-      GoRoute( 
+      GoRoute(
         path: '/community-service',
         pageBuilder: (context, state) =>
             const NoTransitionPage(child: CommunityServicePage()),
@@ -46,8 +49,6 @@ class MyApp extends StatelessWidget {
   );
 
   MyApp({super.key});
-
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_app/constants/colors.dart';
 import 'package:flutter_app/pages/home.dart';
 import 'package:flutter_app/pages/signup_page.dart';
+import 'package:go_router/go_router.dart';
 
 class LoginWeb extends StatefulWidget {
   const LoginWeb({super.key});
@@ -15,21 +16,12 @@ class _LoginWebState extends State<LoginWeb> {
   final TextEditingController _passwordController = TextEditingController();
 
   void _login() {
-    // Navigate to the HomePage
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const HomePage()),
-    );
+    context.go('/home');
   }
 
   void _goToSignup() {
-    // Navigate to the SignUpWeb page
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => const SignupPage()),
-    );
+    context.go('/signup');
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -45,46 +37,53 @@ class _LoginWebState extends State<LoginWeb> {
           decoration: const BoxDecoration(
             color: Color(0xFF001120),
           ),
-          child: Row( 
+          child: Row(
             children: [
               // Left Container
               Container(
-                width: screenSizeWidth * 0.5,
-                color: const Color(0xFF001120), // Replace this with CustomColor.scaffoldBg if defined
-                child:Column(mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.center,children: [
-                  Container(
-                    child:Row(mainAxisAlignment: MainAxisAlignment.center,
+                  width: screenSizeWidth * 0.5,
+                  color: const Color(
+                      0xFF001120), // Replace this with CustomColor.scaffoldBg if defined
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      Image.asset("assets/images/EcoResolve-logo.png",height:80),
-                      const SizedBox(width:10),
-                      const Text('EcoResolve',
-                      style:TextStyle(fontSize:60,color:CustomColor.greenPrimary,fontWeight: FontWeight.bold))
-                    ],)
-                  ),
-                  const SizedBox(height: 10),
-                  Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 40),
-                      child: const Row(
+                      Container(
+                          child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Flexible(
-                            child: Text(
-                              "Discover local volunteering opportunities and resolve disputes with ease using our intelligent chatbots. Our Conflict Resolution Chatbot provides personalized guidance and strategies to address conflicts constructively, empowering you with effective communication tools to foster understanding. Meanwhile, the Community Service Chatbot helps you get involved and make a difference in your community effortlessly, offering tailored suggestions for service projects that match your interests and skills.",
+                          Image.asset("assets/images/EcoResolve-logo.png",
+                              height: 80),
+                          const SizedBox(width: 10),
+                          const Text('EcoResolve',
                               style: TextStyle(
-                                fontSize: 15,
-                                color: CustomColor.lightGrey,
-                              ),
-                              softWrap: true,
-                              textAlign: TextAlign.center,
-                            ),
-                          ),
+                                  fontSize: 60,
+                                  color: CustomColor.greenPrimary,
+                                  fontWeight: FontWeight.bold))
                         ],
+                      )),
+                      const SizedBox(height: 10),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 40),
+                        child: const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                "Discover local volunteering opportunities and resolve disputes with ease using our intelligent chatbots. Our Conflict Resolution Chatbot provides personalized guidance and strategies to address conflicts constructively, empowering you with effective communication tools to foster understanding. Meanwhile, the Community Service Chatbot helps you get involved and make a difference in your community effortlessly, offering tailored suggestions for service projects that match your interests and skills.",
+                                style: TextStyle(
+                                  fontSize: 15,
+                                  color: CustomColor.lightGrey,
+                                ),
+                                softWrap: true,
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-
-                ],)
-              ),
+                    ],
+                  )),
               // Right Container
               Container(
                 width: screenSizeWidth * 0.5,
@@ -94,7 +93,8 @@ class _LoginWebState extends State<LoginWeb> {
                     padding: const EdgeInsets.all(30),
                     decoration: BoxDecoration(
                       color: const Color.fromRGBO(0, 23, 42, 0.7),
-                      border: Border.all(color: const Color(0xffA6FAFF), width: 2),
+                      border:
+                          Border.all(color: const Color(0xffA6FAFF), width: 2),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Column(
@@ -115,10 +115,12 @@ class _LoginWebState extends State<LoginWeb> {
                             hintText: 'Enter your Email here',
                             hintStyle: TextStyle(color: CustomColor.lightGrey),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColor.greenSecondary),
+                              borderSide:
+                                  BorderSide(color: CustomColor.greenSecondary),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColor.greenSecondary),
+                              borderSide:
+                                  BorderSide(color: CustomColor.greenSecondary),
                             ),
                           ),
                           style: const TextStyle(color: Colors.white),
@@ -131,10 +133,12 @@ class _LoginWebState extends State<LoginWeb> {
                             hintText: 'Enter your password',
                             hintStyle: TextStyle(color: CustomColor.lightGrey),
                             enabledBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColor.greenSecondary),
+                              borderSide:
+                                  BorderSide(color: CustomColor.greenSecondary),
                             ),
                             focusedBorder: UnderlineInputBorder(
-                              borderSide: BorderSide(color: CustomColor.greenSecondary),
+                              borderSide:
+                                  BorderSide(color: CustomColor.greenSecondary),
                             ),
                           ),
                           style: const TextStyle(color: Colors.white),
@@ -143,19 +147,20 @@ class _LoginWebState extends State<LoginWeb> {
                         ElevatedButton(
                           onPressed: _login,
                           style: ElevatedButton.styleFrom(
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20),
-                            ),
-                            backgroundColor:
-                                const Color.fromRGBO(46, 196, 216, 0.1),
-                            side: const BorderSide(
-                                color: Color(0xffA6FAFF), width: 1),
-                            minimumSize: const Size(200, 50),
-                            maximumSize: const Size(200, 50)),
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20),
+                              ),
+                              backgroundColor:
+                                  const Color.fromRGBO(46, 196, 216, 0.1),
+                              side: const BorderSide(
+                                  color: Color(0xffA6FAFF), width: 1),
+                              minimumSize: const Size(200, 50),
+                              maximumSize: const Size(200, 50)),
                           child: const Text(
                             'Login',
                             style: TextStyle(
-                                fontSize: 20, color: Color(0xffA6FAFF)),),
+                                fontSize: 20, color: Color(0xffA6FAFF)),
+                          ),
                         ),
                         const SizedBox(height: 20),
                         GestureDetector(
